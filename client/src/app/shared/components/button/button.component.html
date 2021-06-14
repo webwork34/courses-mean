@@ -1,0 +1,8 @@
+<button
+  [disabled]="btnDisabled"
+  [type]="btnType"
+  *ngIf="showBtn === 'true' ? true : false"
+>
+  {{ btnName }}
+  <fa-icon *ngIf="iconName" [icon]="iconName"></fa-icon>
+</button>

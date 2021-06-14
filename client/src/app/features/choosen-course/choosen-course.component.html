@@ -1,0 +1,19 @@
+<section>
+  <app-button [btnName]="goBackBtn" (click)="goBack()"></app-button>
+  <h2 *ngIf="isLoading; else elseBlock">Loading...</h2>
+
+  <ng-template #elseBlock>
+    <ul class="course-info">
+      <li><b>Title: </b> {{ course.title }}</li>
+      <li><b>Description: </b>{{ course.description }}</li>
+      <li><b>Duration: </b>{{ course.duration | minTransform }}</li>
+
+      <ul class="authors">
+        <b>Authors: </b>
+        <li *ngFor="let author of course.authors">
+          {{ author }}
+        </li>
+      </ul>
+    </ul>
+  </ng-template>
+</section>

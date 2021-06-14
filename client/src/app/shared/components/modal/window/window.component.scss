@@ -1,0 +1,28 @@
+form {
+  text-align: center;
+
+  .input-box {
+    margin-bottom: 20px;
+
+    .error {
+      color: red;
+    }
+
+    input {
+      padding: 5px;
+
+      &.ng-invalid.ng-touched {
+        border: 1px solid red;
+      }
+
+      &.ng-valid.ng-touched {
+        border: 1px solid green;
+      }
+    }
+  }
+
+  .btn-box {
+    display: flex;
+    justify-content: space-between;
+  }
+}

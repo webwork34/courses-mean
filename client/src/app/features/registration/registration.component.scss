@@ -1,0 +1,28 @@
+@import "./../../shared/styles/constants.scss";
+
+section {
+  padding: 20px;
+
+  form {
+    width: 500px;
+    text-align: center;
+    margin: 0 auto;
+
+    h2 {
+      margin-bottom: 15px;
+    }
+
+    .form-control {
+      height: 80px;
+
+      input {
+        display: block;
+        margin: 0 auto;
+      }
+    }
+
+    p {
+      margin-top: 10px;
+    }
+  }
+}

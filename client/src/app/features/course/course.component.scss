@@ -1,0 +1,36 @@
+.course-box {
+  border: 1px solid green;
+  padding: 20px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+
+  .course-description {
+    width: 65%;
+  }
+
+  .course-info {
+    width: 30%;
+
+    .authors-box > span:last-child > .coma {
+      display: none;
+    }
+
+    h3 {
+      display: inline-block;
+      margin-bottom: 5px;
+    }
+
+    .btn-box {
+      width: 90%;
+      max-width: 250px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      fa-icon {
+        font-size: 25px;
+      }
+    }
+  }
+}

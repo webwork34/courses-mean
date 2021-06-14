@@ -1,0 +1,7 @@
+<form #searchForm="ngForm" (ngSubmit)="onSubmit(searchForm)">
+  <input type="text" [(ngModel)]="search" #searchStr="ngModel" name="search" />
+
+  <!-- (input)="onChange($event)" -->
+
+  <app-button [btnName]="searchBtn" [btnType]="submit"></app-button>
+</form>

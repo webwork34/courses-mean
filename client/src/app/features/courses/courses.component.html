@@ -1,0 +1,27 @@
+<section>
+  <h2 *ngIf="isLoading; else elseBlock">Loading...</h2>
+  <ng-template #elseBlock>
+    <div *ngIf="courses.length">
+      <app-search (onSearch)="search($event)"></app-search>
+
+      <app-button [btnName]="addCourse" (click)="goToCreatePage()"></app-button>
+
+      <app-course
+        [courses]="courses"
+        [searchStr]="searchStr"
+        (onDelete)="deleteHandler($event)"
+        (onEdit)="editHandler($event)"
+      ></app-course>
+    </div>
+
+    <!-- <app-modal></app-modal> -->
+
+    <app-info
+      *ngIf="!courses.length"
+      [infoTitle]="infoTitle"
+      [infoText]="infoText"
+    >
+      <app-button [btnName]="addCourse" (click)="goToCreatePage()"></app-button>
+    </app-info>
+  </ng-template>
+</section>

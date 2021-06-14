@@ -1,0 +1,10 @@
+<app-header>
+  <div class="logout-info">
+    <p>
+      Hello, <b> {{ name }}! </b>
+    </p>
+    <app-button [btnName]="logOut" (click)="logout()"></app-button>
+  </div>
+</app-header>
+
+<router-outlet></router-outlet>

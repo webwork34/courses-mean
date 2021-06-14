@@ -1,0 +1,180 @@
+<section>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-control">
+      <label for="title"><b>Title</b> </label>
+
+      <div class="title-block">
+        <input
+          class="border"
+          id="title"
+          type="text"
+          formControlName="title"
+          [ngClass]="{
+            invalid: form.get('title').invalid && form.get('title').touched
+          }"
+          [ngClass]="{
+            valid: form.get('title').valid && form.get('title').touched
+          }"
+        />
+
+        <app-button [btnName]="goBack" (click)="goToCoursesList()"></app-button>
+
+        <app-button
+          [btnType]="submit"
+          [btnName]="createCourse"
+          [btnDisabled]="form.invalid"
+        ></app-button>
+      </div>
+
+      <p
+        class="error"
+        *ngIf="form.get('title').invalid && form.get('title').touched"
+      >
+        <small *ngIf="form.get('title').errors['required']">
+          Title is required
+        </small>
+      </p>
+    </div>
+
+    <div class="form-control description">
+      <label for="description"><b>Description</b> </label>
+      <textarea
+        class="border"
+        rows="4"
+        id="description"
+        formControlName="description"
+        [ngClass]="{
+          invalid:
+            form.get('description').invalid && form.get('description').touched
+        }"
+        [ngClass]="{
+          valid:
+            form.get('description').valid && form.get('description').touched
+        }"
+      ></textarea>
+      <span
+        class="error"
+        *ngIf="
+          form.get('description').invalid && form.get('description').touched
+        "
+      >
+        <small *ngIf="form.get('description').errors['required']">
+          Description is required
+        </small>
+      </span>
+    </div>
+
+    <!-- =================================================================== -->
+
+    <div class="authors-section">
+      <div class="authors-duration">
+        <div class="authors">
+          <h3>Add authors</h3>
+          <div class="form-control no-margin">
+            <label for="author-name"><b>Author name</b></label>
+            <input
+              #newAuthor
+              (input)="checkInputValue(newAuthor)"
+              class="border"
+              type="text"
+              id="author-name"
+              formControlName="newAuthor"
+              [ngClass]="{
+                invalid:
+                  form.get('newAuthor').invalid && form.get('newAuthor').touched
+              }"
+              [ngClass]="{
+                valid:
+                  form.get('newAuthor').valid && form.get('newAuthor').touched
+              }"
+            />
+
+            <p
+              class="error"
+              *ngIf="
+                form.get('newAuthor').invalid && form.get('newAuthor').touched
+              "
+            >
+              <small
+                *ngIf="
+                  form.get('newAuthor').errors['onlyLatinLettersAndNumbers']
+                "
+              >
+                Author name should contain only latin letters and numbers
+              </small>
+            </p>
+          </div>
+
+          <div class="btn-create-author">
+            <app-button
+              type="button"
+              [btnName]="createAuthor"
+              [btnDisabled]="
+                emptyAuthor ||
+                (form.get('newAuthor').errors &&
+                  form.get('newAuthor').errors['onlyLatinLettersAndNumbers'])
+              "
+              (click)="addAuthor()"
+            ></app-button>
+          </div>
+        </div>
+
+        <div class="form-control duration-control">
+          <h3>Duration</h3>
+          <label for="duration"><b>Duration</b> </label>
+
+          <input
+            class="border"
+            id="duration"
+            type="number"
+            [(ngModel)]="duration"
+            formControlName="duration"
+            [ngClass]="{
+              invalid:
+                form.get('duration').invalid && form.get('duration').touched
+            }"
+            [ngClass]="{
+              valid: form.get('duration').valid && form.get('duration').touched
+            }"
+          />
+
+          <p
+            class="error"
+            *ngIf="form.get('duration').invalid && form.get('duration').touched"
+          >
+            <small *ngIf="form.get('duration').errors['required']">
+              Duration is required
+            </small>
+            <small *ngIf="form.get('duration').errors['min']">
+              Duration should't be less then 0
+            </small>
+          </p>
+          <p class="duration" *ngIf="duration && duration >= 0">
+            Duration: {{ duration | minTransform: "HM" }}
+          </p>
+        </div>
+      </div>
+
+      <!-- ---------------------------------------------------------------------- -->
+      <div class="authors-list">
+        <h3>Authors list</h3>
+
+        <div formArryName="authors">
+          <div
+            class="form-group d-flex"
+            *ngFor="
+              let author of form.controls['authors']['value'];
+              let i = index
+            "
+          >
+            <span class="authors">{{ author }}</span>
+            <app-button
+              [btnName]="deleteAuthor"
+              (click)="removeAuthor(i)"
+            ></app-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>

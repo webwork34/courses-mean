@@ -1,0 +1,70 @@
+<section>
+  <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+    <h2>Login</h2>
+    <div class="form-control">
+      <label for="email">Email: </label>
+      <input
+        class="border"
+        id="email"
+        type="text"
+        name="email"
+        [(ngModel)]="user.email"
+        #email="ngModel"
+        required
+        appEmailValidator
+        placeholder="example@gmail.com"
+      />
+
+      <span class="error" [hidden]="email.valid || email.untouched">
+        <small [hidden]="!email.errors?.required"> Email is required </small>
+
+        <small class="error" [hidden]="!email.errors?.emailvalidator">
+          Please, provide a valid email address
+        </small>
+      </span>
+    </div>
+
+    <div class="form-control password">
+      <label for="password">Password: </label>
+      <input
+        class="border"
+        id="password"
+        type="password"
+        name="password"
+        [(ngModel)]="user.password"
+        #password="ngModel"
+        required
+      />
+
+      <div class="eyes-container">
+        <fa-icon
+          *ngIf="showEye"
+          [icon]="faEye"
+          (click)="changeVisability()"
+          [appToggle]="showEye"
+        ></fa-icon>
+        <fa-icon
+          *ngIf="!showEye"
+          [icon]="faEyeSlash"
+          (click)="changeVisability()"
+          [appToggle]="showEye"
+        ></fa-icon>
+      </div>
+
+      <small class="error" [hidden]="password.valid || password.untouched">
+        Password is required
+      </small>
+    </div>
+
+    <app-button
+      [btnName]="Login"
+      [btnType]="submit"
+      [btnDisabled]="loginForm.invalid"
+    ></app-button>
+
+    <p>
+      If you don't have an account you can
+      <span class="link" (click)="goToRegister()">Registration</span>
+    </p>
+  </form>
+</section>

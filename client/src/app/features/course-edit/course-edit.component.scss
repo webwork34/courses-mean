@@ -1,0 +1,91 @@
+@import "./../../shared/styles/constants.scss";
+
+form {
+  width: 100%;
+  margin-top: 20px;
+
+  label {
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  .form-control {
+    height: 80px;
+    margin-bottom: 10px;
+
+    &:first-of-type {
+      label {
+        margin: 0;
+      }
+    }
+
+    .title-block {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      #title {
+        width: 80%;
+      }
+    }
+
+    textarea {
+      width: 100%;
+    }
+  }
+
+  .description {
+    margin-bottom: 20px;
+    height: 120px;
+  }
+
+  .authors-section {
+    border: 1px solid $gray;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+
+    .no-margin {
+      margin: 0;
+    }
+
+    h3 {
+      text-align: center;
+    }
+
+    input {
+      margin: 0 0 5px;
+    }
+
+    .duration-control {
+      margin: 20px 0 0;
+    }
+
+    .authors-duration {
+      width: 48%;
+
+      .btn-create-author {
+        text-align: center;
+      }
+
+      input {
+        width: 100%;
+      }
+    }
+
+    .authors-list {
+      width: 48%;
+
+      .d-flex {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: 5px;
+
+        .authors {
+          width: 60%;
+        }
+      }
+    }
+  }
+}

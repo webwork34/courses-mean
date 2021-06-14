@@ -1,0 +1,38 @@
+<div class="course-box" *ngFor="let course of courses">
+  <div class="course-description">
+    <h2>{{ course.title }}</h2>
+    <p>{{ course.description }}</p>
+  </div>
+  <div class="course-info">
+    <div class="authors-box">
+      <h3 class="author">Authors:</h3>
+      <span *ngFor="let author of course.authors">
+        {{ author }}<span class="coma">,</span>
+      </span>
+    </div>
+
+    <div>
+      <h3>Duration:</h3>
+      <span> {{ course.duration | minTransform }} </span>
+    </div>
+
+    <div class="btn-box">
+      <app-button
+        [btnName]="showCourseBtn"
+        (click)="showCourse(course._id)"
+      ></app-button>
+
+      <app-button
+        [iconName]="faPen"
+        (click)="editCourse(course._id)"
+        showBtn="{{ course.editable }}"
+      ></app-button>
+
+      <app-button
+        [iconName]="faTrash"
+        (click)="deleteCourse(course._id)"
+        showBtn="{{ course.editable }}"
+      ></app-button>
+    </div>
+  </div>
+</div>

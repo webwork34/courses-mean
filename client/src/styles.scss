@@ -1,0 +1,75 @@
+@import "./app/shared/styles/toast.scss";
+@import "./app/shared/styles/constants.scss";
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+section {
+  padding: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+nav {
+  border-bottom: 2px solid black;
+  ul {
+    display: flex;
+    justify-content: center;
+
+    li {
+      list-style: none;
+      padding: 5px 10px;
+    }
+  }
+}
+
+.link {
+  text-decoration: underline;
+  color: blue;
+  cursor: pointer;
+}
+
+.error {
+  color: $danger;
+}
+
+form {
+  border: 2px solid $light_blue;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+input,
+textarea {
+  padding: 5px;
+  border: 1px solid $orange;
+}
+
+textarea {
+  border-color: $sand_color;
+}
+
+.border.ng-touched.ng-invalid {
+  border: 1px solid $danger;
+}
+
+.border.ng-touched.ng-valid {
+  border: 1px solid green;
+}
+
+.password {
+  position: relative;
+
+  .eyes-container {
+    position: absolute;
+    top: 24px;
+    right: 148px;
+    cursor: pointer;
+  }
+}

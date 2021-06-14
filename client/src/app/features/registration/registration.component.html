@@ -1,0 +1,130 @@
+<section>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h2>Registration</h2>
+
+    <!-- ======================================================== -->
+    <div class="form-control">
+      <label for="login">Name: </label>
+      <input
+        class="border"
+        id="name"
+        type="text"
+        formControlName="name"
+        [ngClass]="{
+          invalid: form.get('name').invalid && form.get('name').touched
+        }"
+        [ngClass]="{
+          valid: form.get('name').valid && form.get('name').touched
+        }"
+      />
+      <span
+        class="error"
+        *ngIf="form.get('name').invalid && form.get('name').touched"
+      >
+        <small *ngIf="form.get('name').errors['required']">
+          Name is required
+        </small>
+
+        <small
+          *ngIf="
+            form.get('name').errors['minlength'] &&
+            form.get('name').errors['minlength']['requiredLength']
+          "
+          class="error"
+        >
+          Name should be bigger then
+          {{ form.get("name").errors["minlength"]["requiredLength"] }}
+          symbols. Now
+          {{ form.get("name").errors["minlength"]["actualLength"] }}
+          symbols.
+        </small>
+      </span>
+    </div>
+
+    <!-- ======================================================== -->
+    <div class="form-control">
+      <label for="email">Email: </label>
+      <input
+        class="border"
+        id="email"
+        type="email"
+        formControlName="email"
+        placeholder="example@gmail.com"
+        [ngClass]="{
+          invalid: form.get('email').invalid && form.get('email').touched
+        }"
+        [ngClass]="{
+          valid: form.get('email').valid && form.get('email').touched
+        }"
+        appEmailValidator
+      />
+      <span
+        class="error"
+        *ngIf="form.get('email').invalid && form.get('email').touched"
+      >
+        <small *ngIf="form.get('email').errors['required']">
+          Email is required
+        </small>
+
+        <small
+          class="error"
+          [hidden]="!form.get('email').errors.emailvalidator"
+        >
+          Please, provide a valid email address
+        </small>
+      </span>
+    </div>
+    <!-- ======================================================== -->
+
+    <div class="form-control password">
+      <label for="password">Password: </label>
+      <input
+        class="border"
+        id="password"
+        type="password"
+        formControlName="password"
+        [ngClass]="{
+          invalid: form.get('password').invalid && form.get('password').touched
+        }"
+        [ngClass]="{
+          valid: form.get('password').valid && form.get('password').touched
+        }"
+      />
+
+      <div class="eyes-container">
+        <fa-icon
+          *ngIf="showEye"
+          [icon]="faEye"
+          (click)="changeVisability()"
+          [appToggle]="showEye"
+        ></fa-icon>
+        <fa-icon
+          *ngIf="!showEye"
+          [icon]="faEyeSlash"
+          (click)="changeVisability()"
+          [appToggle]="showEye"
+        ></fa-icon>
+      </div>
+
+      <span
+        class="error"
+        *ngIf="form.get('password').invalid && form.get('password').touched"
+      >
+        <small *ngIf="form.get('password').errors['required']">
+          Password is required
+        </small>
+      </span>
+    </div>
+
+    <app-button
+      [btnName]="Registration"
+      [btnType]="submit"
+      [btnDisabled]="form.invalid"
+    ></app-button>
+
+    <p>
+      If you have an account you can
+      <span class="link" (click)="goToLogin()">Login</span>
+    </p>
+  </form>
+</section>
