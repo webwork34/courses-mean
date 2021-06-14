@@ -26,7 +26,7 @@ module.exports.login = async (req, res) => {
       });
     } else {
       return res
-        .status(401)
+        .status(403)
         .json({message: `Passwords didn't match. Check and try again.`});
     }
   } else {
